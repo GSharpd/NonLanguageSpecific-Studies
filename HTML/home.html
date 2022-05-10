@@ -10,5 +10,14 @@
     <h2>Main Page</h2>
 
     <h4>Welcome to the home page, {{ .Username }}</h4>
+
+    <button id="button">Click me</button>
+    <script>
+        var button = document.getElementById("button");
+
+        button.onclick = function(){
+            alert("Button clicked")
+        }
+    </script>
   </body>
 </html>
