@@ -8,7 +8,7 @@ import (
 )
 
 type dog struct {
-	Name  string `json:"name"`
+	Name  string `json:"name"` // You can use a "-" in order to hide a property during marshalling
 	Breed string `json:"breed"`
 	Age   uint8  `json:"age"`
 }
@@ -36,4 +36,28 @@ func main() {
 
 	fmt.Println(JSONDog2)
 	fmt.Println(bytes.NewBuffer(JSONDog2))
+
+	// Unmarshalling
+
+	dog3 := `{"name":"Max", "breed":"Rotweiller", "age": 7}`
+
+	var dog31 dog
+
+	fmt.Println(dog3)
+	fmt.Println(dog31)
+
+	if err := json.Unmarshal([]byte(dog3), &dog31); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(dog31)
+
+	dog32 := make(map[string]string)
+	dog33 := `{"name":"Max", "breed":"Rotweiller", "age": "7"}`
+
+	if err := json.Unmarshal([]byte(dog33), &dog32); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(dog32)
 }
